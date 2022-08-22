@@ -28,6 +28,18 @@ header{
 }
 .card img{
     width: 100px;    
+    
+}
+.front, .back{
+    width: 100px;
+    height: 100px;
+}
+.front{
+    display: none;
+}
+.back{    
+}
+.escondido{
     display: none;
 }
 
