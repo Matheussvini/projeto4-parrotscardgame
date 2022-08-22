@@ -62,18 +62,15 @@ function insertCards(){
      }
 };
 
-let primeiraCarta; 
-let segundaCarta;
+let firstCard; 
+let secondCard;
 let count = 0;
 
 insertCards();
 
-
-
-
  function turnCard (element){
 
-    if( primeiraCarta !== undefined && segundaCarta !== undefined){
+    if( firstCard !== undefined && secondCard !== undefined){
         return
     };
     count ++;
@@ -81,47 +78,67 @@ insertCards();
     front.classList.add('escondido');   
 
     const back = element.children[1];
-    back.classList.remove('escondido');  
-    if(primeiraCarta === undefined){
-        primeiraCarta = element;
+    back.classList.remove('escondido');
+    if(firstCard === undefined){
+        firstCard = element;
     } else{
-        segundaCarta = element;
-        compararCarta();        
+        secondCard = element;
+        compareCard();
     };
  };
 
 let wins = 0;
- function compararCarta(){
+ function compareCard(){
 
-    if(primeiraCarta === segundaCarta){
-        segundaCarta = undefined;
-    }else if( primeiraCarta.children[1].innerHTML === segundaCarta.children[1].innerHTML){
-        primeiraCarta.setAttribute("onclick","");
-        segundaCarta.setAttribute("onclick","");
-        primeiraCarta = undefined;
-        segundaCarta = undefined;
-        wins ++ 
-        setTimeout(winer, 500);
-    } else {      
+    if(firstCard === secondCard){
+        secondCard = undefined;
+    }else if( firstCard.children[1].innerHTML === secondCard.children[1].innerHTML){
+        firstCard.setAttribute("onclick","");
+        secondCard.setAttribute("onclick","");
+        firstCard = undefined;
+        secondCard = undefined;
+        wins ++;
+        setTimeout(winner, 500);
+    } else {
       setTimeout(unTurnCard, 1000);
-          }    
+          };
  };
 
  function unTurnCard(){
     
-    primeiraCarta.children[0].classList.remove('escondido');   
-    primeiraCarta.children[1].classList.add('escondido');
+    firstCard.children[0].classList.remove('escondido');
+    firstCard.children[1].classList.add('escondido');
     
-    segundaCarta.children[0].classList.remove('escondido');
-    segundaCarta.children[1].classList.add('escondido');
+    secondCard.children[0].classList.remove('escondido');
+    secondCard.children[1].classList.add('escondido');
 
-    primeiraCarta = undefined;
-    segundaCarta = undefined;
-    
- }
+    firstCard = undefined;
+    secondCard = undefined;
+ };
 
- function winer(){
+ function winner(){
     if( wins === qtdeCards/2){
-    alert(`Você ganhou em ${count} jogadas!`);
-};
- }
+        clearInterval(id);
+        alert(`Você ganhou em ${count} jogadas e em ${time} segundos!`);
+
+        let playAgain = prompt('Você gostaria de reiniciar a partida? Responda com "sim" ou "não"!');
+        while ( playAgain !== 'sim' && playAgain !== 'não'){
+            playAgain = prompt('Você gostaria de reiniciar a partida? Responda com "sim" ou "não"!');
+        };
+        if( playAgain === 'sim'){
+            window.location.reload();
+        }else if( playAgain === 'não'){
+            alert('Obrigado pela preferência!');
+        };
+    };
+ };
+
+ let time = 0;
+
+ function timer(){
+    time++
+    const clock = document.querySelector('.timer');
+    clock.innerHTML = `${time} seconds`;
+ };
+
+ let id = setInterval(timer, 1000);

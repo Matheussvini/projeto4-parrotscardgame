@@ -2,6 +2,7 @@ body{
     font-family: 'Roboto', sans-serif;
     font-weight: 700;
     background-color: #eef9bf;
+    position: relative;
 }
 header{
     font-size: 56px;
@@ -13,9 +14,7 @@ header{
     width: 1057px;    
     margin: 13px auto;    
     display: flex;
-    flex-wrap: wrap;
-
-
+    flex-wrap: wrap;    
 }
 .card{
     width: 117px;
@@ -29,12 +28,10 @@ header{
     transition: all 1000ms;
 }
 .card:hover{
-    cursor: pointer;
-    
+    cursor: pointer;    
 }
 .card img{
     width: 100px;    
-    
 }
 .front, .back{
     width: 100px;
@@ -43,6 +40,22 @@ header{
 .escondido{
     display: none;  
     transform: rotateY(180deg);
+}
+.timer{
+    position: absolute;
+    width: 220px;
+    height: 50px;
+    background-color: #99CEA8;
+    top: 0;
+    right: 50px;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 700;
+    font-size: 35px;
+    color:#eef9bf;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50px;
 }
 @media (max-width: 1057px){
     .game{
