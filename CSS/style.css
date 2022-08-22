@@ -24,7 +24,13 @@ header{
     background-color: #99CEA8;
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: center;    
+    border-radius: 5px;
+    transition: all 1000ms;
+}
+.card:hover{
+    cursor: pointer;
+    
 }
 .card img{
     width: 100px;    
@@ -35,12 +41,15 @@ header{
     height: 100px;
 }
 .front{
-    display: none;
+    
+      
 }
 .back{    
+    
 }
 .escondido{
-    display: none;
+    display: none;  
+    transform: rotateY(180deg);
 }
 
 

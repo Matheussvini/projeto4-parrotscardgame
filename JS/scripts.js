@@ -43,6 +43,7 @@ function comparator() {
 };
 
 shuffleCards();
+const ids = [];
 
 function insertCards(){
     const game = document.querySelector('.game');
@@ -50,15 +51,68 @@ function insertCards(){
 
      for ( let i = 0; i < qtdeCards; i++){
         game.innerHTML += `
-        <div class="card">
+        <div onclick="turnCard(this)" class="card"" >
             <div class="front">
                 <img src="./images/front.png" alt="Parrot image">                
             </div>
-            <div class="back"><img src="${card[i]}" alt=""></div>
+            <div class="back escondido"><img src="${card[i]}" alt=""></div>
         </div>
         `;
+        ids.push(i);
      }
 };
 
+let primeiraCarta; 
+let segundaCarta;
+
 insertCards();
+
+
+
+
+ function turnCard (element){
+
+    if( primeiraCarta !== undefined && segundaCarta !== undefined){
+        return
+    }
+    const front = element.children[0];
+    front.classList.add('escondido');   
+
+    const back = element.children[1];
+    back.classList.remove('escondido');  
+    if(primeiraCarta === undefined){
+        primeiraCarta = element;
+    } else{
+        segundaCarta = element;
+        compararCarta();
+    }
+ }
+
+ function compararCarta(){
+
+    if(primeiraCarta === segundaCarta){
+        segundaCarta = undefined;
+    }else if( primeiraCarta.children[1].innerHTML === segundaCarta.children[1].innerHTML){
+        primeiraCarta.setAttribute("onclick","");
+        segundaCarta.setAttribute("onclick","");
+        primeiraCarta = undefined;
+        segundaCarta = undefined;
+    } else {
+      
+      setTimeout(unTurnCard, 1000);
+    }
+ };
+
+ function unTurnCard(){
+    
+    primeiraCarta.children[0].classList.remove('escondido');   
+    primeiraCarta.children[1].classList.add('escondido');
+    
+    segundaCarta.children[0].classList.remove('escondido');
+    segundaCarta.children[1].classList.add('escondido');
+
+    primeiraCarta = undefined;
+    segundaCarta = undefined;
+ }
+
 
