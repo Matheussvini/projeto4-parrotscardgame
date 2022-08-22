@@ -40,16 +40,22 @@ header{
     width: 100px;
     height: 100px;
 }
-.front{
-    
-      
-}
-.back{    
-    
-}
 .escondido{
     display: none;  
     transform: rotateY(180deg);
 }
-
+@media (max-width: 1057px){
+    .game{
+        width: 100%;
+        margin: 0 auto;
+    }
+}
+@media (max-width: 425px){
+    .game{
+        flex-direction: column;                
+    }
+    .card{
+        margin: 34px auto;
+    }
+}
 

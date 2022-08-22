@@ -64,6 +64,7 @@ function insertCards(){
 
 let primeiraCarta; 
 let segundaCarta;
+let count = 0;
 
 insertCards();
 
@@ -74,7 +75,8 @@ insertCards();
 
     if( primeiraCarta !== undefined && segundaCarta !== undefined){
         return
-    }
+    };
+    count ++;
     const front = element.children[0];
     front.classList.add('escondido');   
 
@@ -84,10 +86,11 @@ insertCards();
         primeiraCarta = element;
     } else{
         segundaCarta = element;
-        compararCarta();
-    }
- }
+        compararCarta();        
+    };
+ };
 
+let wins = 0;
  function compararCarta(){
 
     if(primeiraCarta === segundaCarta){
@@ -97,10 +100,11 @@ insertCards();
         segundaCarta.setAttribute("onclick","");
         primeiraCarta = undefined;
         segundaCarta = undefined;
-    } else {
-      
+        wins ++ 
+        setTimeout(winer, 500);
+    } else {      
       setTimeout(unTurnCard, 1000);
-    }
+          }    
  };
 
  function unTurnCard(){
@@ -113,6 +117,11 @@ insertCards();
 
     primeiraCarta = undefined;
     segundaCarta = undefined;
+    
  }
 
-
+ function winer(){
+    if( wins === qtdeCards/2){
+    alert(`Você ganhou em ${count} jogadas!`);
+};
+ }
